@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gamma Studio — Презентации + КСП (Приказ №130 МОН РК)</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+    body { font-family: var(--font-sans); transition: background-color 0.4s ease, color 0.4s ease; }
+    .font-serif-title { font-family: var(--font-serif); }
+
+    .theme-sakura   { --bg-main:#FAF6F0; --bg-card:#FFFFFF; --bg-inner:#F3ECE1; --text-title:#2D2424; --text-body:#615555; --accent:#D4A3A3; --accent-dark:#B88282; --accent-bg:#F5E8E8; --border:#E8DFD8; --shadow:rgba(212,163,163,0.12); }
+    .theme-peony    { --bg-main:#FAF5F7; --bg-card:#FFFFFF; --bg-inner:#F6EAEE; --text-title:#362229; --text-body:#6B525B; --accent:#C88EA7; --accent-dark:#9E5B77; --accent-bg:#F3E5EC; --border:#EADCE3; --shadow:rgba(200,142,167,0.12); }
+    .theme-lavender { --bg-main:#F8F7FA; --bg-card:#FFFFFF; --bg-inner:#EFEFF6; --text-title:#272533; --text-body:#575466; --accent:#9B94B8; --accent-dark:#736B94; --accent-bg:#EDEDF5; --border:#E3E1EC; --shadow:rgba(155,148,184,0.12); }
+    .theme-sage     { --bg-main:#F6F7F5; --bg-card:#FFFFFF; --bg-inner:#EBEFEA; --text-title:#212923; --text-body:#525E55; --accent:#8FA89B; --accent-dark:#648272; --accent-bg:#E8EFEB; --border:#DDE4E0; --shadow:rgba(143,168,155,0.12); }
+    .theme-ivory    { --bg-main:#FBF9F5; --bg-card:#FFFFFF; --bg-inner:#F4EFE6; --text-title:#2C2825; --text-body:#615B56; --accent:#C2A68C; --accent-dark:#9E8167; --accent-bg:#F5EEE6; --border:#E8E1D7; --shadow:rgba(194,166,140,0.12); }
+
+    body { background-color: var(--bg-main); color: var(--text-body); }
+    .gamma-card { background-color: var(--bg-card); border-color: var(--border); color: var(--text-body); box-shadow: 0 10px 30px var(--shadow); }
+    .gamma-inner { background-color: var(--bg-inner); border-color: var(--border); }
+    .gamma-title { color: var(--text-title); }
+    .gamma-accent-text { color: var(--accent-dark); }
+    .gamma-accent-bg { background-color: var(--accent-bg); border-color: var(--accent); }
+
+    [contenteditable="true"]:focus { outline: 1px dashed var(--accent); border-radius: 4px; padding: 2px; }
+
+    .mode-btn.active { background: #1c1917; color: white; }
+    .ksp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .ksp-table th, .ksp-table td { border: 1px solid #d6d3d1; padding: 8px 10px; vertical-align: top; }
+    .ksp-table th { background: var(--bg-inner); font-weight: 600; color: var(--text-title); }
+
+    @media print {
+      body { background: #fff !important; color: #000 !important; }
+      .no-print { display: none !important; }
+      .gamma-card { break-after: page; box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+      [contenteditable="true"] { outline: none !important; }
+    }
+  </style>
+</head>
+<body class="theme-sakura min-h-screen flex flex-col items-center p-4 md:p-8">
+
+  <!-- HEADER -->
+  <header class="w-full max-w-5xl mb-8 no-print">
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-full bg-gradient-to-br from-rose-200 to-amber-100 flex items-center justify-center font-serif text-xl text-stone-700 shadow-sm border border-stone-200">γ</div>
+        <div>
+          <h1 class="text-2xl font-medium tracking-tight font-serif-title gamma-title">Gamma Studio</h1>
+          <p class="text-xs text-stone-500 uppercase tracking-widest font-light">Презентации + КСП (Приказ №130 МОН РК)</p>
+        </div>
+      </div>
+      <input type="password" id="apiKey" placeholder="Gemini API Key" class="w-full md:w-64 bg-white border border-stone-200 text-xs text-stone-700 px-4 py-2.5 rounded-full focus:outline-none focus:border-stone-400 shadow-sm">
+    </div>
+
+    <!-- MODE SWITCH -->
+    <div class="flex gap-2 mb-6">
+      <button onclick="setMode('presentation')" id="modePres" class="mode-btn active px-5 py-2.5 rounded-full text-xs font-medium border border-stone-300 transition-all">Презентация</button>
+      <button onclick="setMode('ksp')" id="modeKsp" class="mode-btn px-5 py-2.5 rounded-full text-xs font-medium border border-stone-300 transition-all bg-white text-stone-700">КСП (Приказ №130)</button>
+    </div>
+
+    <!-- CONFIG CARD -->
+    <div class="bg-white border border-stone-200/80 rounded-3xl p-6 md:p-8 shadow-xl shadow-stone-200/40 space-y-5">
+
+      <!-- COMMON -->
+      <div>
+        <label class="block text-xs font-semibold uppercase tracking-wider text-stone-500 mb-2">Тема / Ключевые положения</label>
+        <textarea id="promptInput" rows="2" placeholder="Тема урока или тема презентации..." class="w-full bg-stone-50/50 border border-stone-200 rounded-2xl p-4 text-sm focus:outline-none focus:border-stone-400"></textarea>
+      </div>
+
+      <!-- KSP FIELDS (hidden by default) -->
+      <div id="kspFields" class="hidden space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-medium text-stone-500 mb-1">Ф.И.О. педагога</label>
+            <input id="kspTeacher" type="text" class="w-full bg-stone-50/50 border border-stone-200 rounded-xl p-2.5 text-xs" placeholder="Алимов М.А.">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-stone-500 mb-1">Предмет</label>
+            <input id="kspSubject" type="text" class="w-full bg-stone-50/50 border border-stone-200 rounded-xl p-2.5 text-xs" placeholder="Информатика">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-stone-500 mb-1">Класс</label>
+            <input id="kspClass" type="text" class="w-full bg-stone-50/50 border border-stone-200 rounded-xl p-2.5 text-xs" placeholder="6 класс">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-stone-500 mb-1">Дата</label>
+            <input id="kspDate" type="date" class="w-full bg-stone-50/50 border border-stone-200 rounded-xl p-2.5 text-xs">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-stone-500 mb-1">Школа / Организация</label>
+            <input id="kspSchool" type="text" class="w-full bg-stone-50/50 border border-stone-200 rounded-xl p-2.5 text-xs" placeholder="№107 школа-лицей">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-stone-500 mb-1">Тип урока</label>
+            <select id="kspType" class="w-full bg-stone-50/50 border border-stone-200 rounded-xl p-2.5 text-xs">
+              <option value="new">Изучение нового материала</option>
+              <option value="combined" selected>Комбинированный</option>
+              <option value="practice">Практическая работа</option>
+              <option value="control">Контроль / закрепление</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-medium text-stone-500 mb-1">Цели обучения (можно оставить пустым — ИИ подберёт код)</label>
+            <textarea id="kspLearningGoals" rows="2" class="w-full bg-stone-50/50 border border-stone-200 rounded-xl p-3 text-xs" placeholder="Например: 6.3.4.2 ..."></textarea>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-stone-500 mb-1">Цели урока (можно оставить пустым)</label>
+            <textarea id="kspLessonGoals" rows="2" class="w-full bg-stone-50/50 border border-stone-200 rounded-xl p-3 text-xs" placeholder="ИИ сделает дифференцированные цели"></textarea>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-6">
+          <label class="flex items-center gap-2 text-xs cursor-pointer">
+            <input type="checkbox" id="kspInclusive" class="rounded border-stone-300">
+            <span>Учесть инклюзивного ученика (адаптации + отдельные задания)</span>
+          </label>
+          <button onclick="saveTeacherProfile()" class="text-xs text-stone-500 hover:text-stone-800 underline">Сохранить шаблон учителя</button>
+          <button onclick="loadTeacherProfile()" class="text-xs text-stone-500 hover:text-stone-800 underline">Загрузить шаблон</button>
+        </div>
+      </div>
+
+      <!-- PRESENTATION + COMMON SETTINGS -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4" id="commonSettings">
+        <div>
+          <label class="block text-xs font-medium text-stone-500 mb-1.5">Формат / Стиль</label>
+          <select id="stylePreset" class="w-full bg-stone-50/50 border border-stone-200 rounded-xl p-2.5 text-xs">
+            <option value="school" selected>Образовательный</option>
+            <option value="business">Корпоративный</option>
+            <option value="lecture">Академический</option>
+            <option value="creative">Аналитический</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-stone-500 mb-1.5">Язык</label>
+          <select id="langSelect" class="w-full bg-stone-50/50 border border-stone-200 rounded-xl p-2.5 text-xs">
+            <option value="Russian" selected>Русский</option>
+            <option value="Kazakh">Қазақша</option>
+            <option value="English">English</option>
+            <option value="UzbekCyrillic">Ўзбекча (Кирилл)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-stone-500 mb-1.5">Глубина</label>
+          <select id="detailLevel" class="w-full bg-stone-50/50 border border-stone-200 rounded-xl p-2.5 text-xs">
+            <option value="brief">Лаконичный</option>
+            <option value="medium" selected>Стандартный</option>
+            <option value="detailed">Развёрнутый</option>
+          </select>
+        </div>
+        <div id="pageCountWrap">
+          <label class="block text-xs font-medium text-stone-500 mb-1.5">Разделов (презентация)</label>
+          <select id="pageCount" class="w-full bg-stone-50/50 border border-stone-200 rounded-xl p-2.5 text-xs">
+            <option value="3">3</option>
+            <option value="5" selected>5</option>
+            <option value="7">7</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-stone-100">
+        <div class="flex items-center gap-3">
+          <span class="text-xs text-stone-500 font-medium">Палитра:</span>
+          <select id="themeSelect" onchange="changeTheme(this.value)" class="bg-stone-50/50 border border-stone-200 text-xs p-2.5 rounded-xl">
+            <option value="theme-sakura" selected>Сакура</option>
+            <option value="theme-peony">Пион</option>
+            <option value="theme-lavender">Лаванда</option>
+            <option value="theme-sage">Шалфей</option>
+            <option value="theme-ivory">Слоновая кость</option>
+          </select>
+        </div>
+        <button onclick="generate()" id="genBtn" class="bg-stone-800 hover:bg-stone-900 text-white font-medium py-3 px-8 rounded-full text-xs tracking-wider uppercase flex items-center gap-2">
+          <span>Сформировать</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- EXPORT BAR -->
+    <div id="exportBar" class="hidden flex-wrap items-center justify-between gap-4 mt-6 bg-white p-5 rounded-2xl border border-stone-200/80 shadow-sm">
+      <div class="flex items-center gap-2 text-xs text-stone-600 font-medium">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span id="exportStatus">Документ готов</span>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <button onclick="window.print()" class="bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs px-4 py-2.5 rounded-xl border border-stone-200 flex items-center gap-2">
+          <i class="fa-solid fa-print text-[10px]"></i> PDF / Печать
+        </button>
+        <button onclick="exportCurrent()" class="bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs px-4 py-2.5 rounded-xl border border-stone-200 flex items-center gap-2">
+          <i class="fa-solid fa-download text-[10px]"></i> <span id="exportBtnText">Скачать</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- RESULT -->
+  <main id="cardsContainer" class="w-full max-w-4xl space-y-8 pb-20">
+    <div class="text-center py-20 text-stone-400 no-print">
+      <p class="font-serif-title text-2xl mb-2 text-stone-500">Готов к работе</p>
+      <p class="text-xs">Выберите режим, заполните поля и нажмите «Сформировать»</p>
+    </div>
+  </main>
+
+  <script>
+    // ===================== STATE =====================
+    let currentMode = 'presentation';
+    let presentationData = [];
+    let presentationTitle = 'Gamma Document';
+    let kspData = null;
+
+    const THEME_COLORS = {
+      "theme-sakura":   { bg:"FAF6F0", title:"2D2424", body:"615555", accent:"B88282", card:"FFFFFF", inner:"F3ECE1" },
+      "theme-peony":    { bg:"FAF5F7", title:"362229", body:"6B525B", accent:"9E5B77", card:"FFFFFF", inner:"F6EAEE" },
+      "theme-lavender": { bg:"F8F7FA", title:"272533", body:"575466", accent:"736B94", card:"FFFFFF", inner:"EFEFF6" },
+      "theme-sage":     { bg:"F6F7F5", title:"212923", body:"525E55", accent:"648272", card:"FFFFFF", inner:"EBEFEA" },
+      "theme-ivory":    { bg:"FBF9F5", title:"2C2825", body:"615B56", accent:"9E8167", card:"FFFFFF", inner:"F4EFE6" }
+    };
+
+    // ===================== INIT =====================
+    document.addEventListener('DOMContentLoaded', () => {
+      const key = localStorage.getItem('gemini_api_key');
+      if (key) document.getElementById('apiKey').value = key;
+      loadTeacherProfile(true);
+      // set today
+      const today = getLocalDateISO();
+      document.getElementById('kspDate').value = today;
+    });
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.getElementById('modePres').classList.toggle('active', mode === 'presentation');
+      document.getElementById('modeKsp').classList.toggle('active', mode === 'ksp');
+      document.getElementById('kspFields').classList.toggle('hidden', mode !== 'ksp');
+      document.getElementById('pageCountWrap').classList.toggle('hidden', mode === 'ksp');
+      document.getElementById('exportBar').classList.add('hidden');
+      document.getElementById('cardsContainer').innerHTML = `
+        <div class="text-center py-20 text-stone-400 no-print">
+          <p class="font-serif-title text-2xl mb-2 text-stone-500">Режим: ${mode === 'ksp' ? 'КСП (Приказ №130)' : 'Презентация'}</p>
+          <p class="text-xs">Заполните поля и нажмите «Сформировать»</p>
+        </div>`;
+    }
+
+    function changeTheme(t) {
+      document.body.className = t + " min-h-screen flex flex-col items-center p-4 md:p-8";
+    }
+
+    // ===================== TEACHER PROFILE =====================
+    function saveTeacherProfile() {
+      const profile = {
+        teacher: document.getElementById('kspTeacher').value,
+        subject: document.getElementById('kspSubject').value,
+        school: document.getElementById('kspSchool').value
+      };
+      localStorage.setItem('gamma_teacher_profile', JSON.stringify(profile));
+      alert('Шаблон учителя сохранён');
+    }
+    function loadTeacherProfile(silent = false) {
+      const raw = localStorage.getItem('gamma_teacher_profile');
+      if (!raw) { if (!silent) alert('Шаблон не найден'); return; }
+      try {
+        const p = JSON.parse(raw);
+        document.getElementById('kspTeacher').value = p.teacher || '';
+        document.getElementById('kspSubject').value = p.subject || '';
+        document.getElementById('kspSchool').value = p.school || '';
+        if (!silent) alert('Шаблон загружен');
+      } catch(e) {}
+    }
+
+    // ===================== SAFETY / NORMALIZATION HELPERS =====================
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function getLocalDateISO() {
+      const d = new Date();
+      const offset = d.getTimezoneOffset();
+      return new Date(d.getTime() - offset * 60000).toISOString().slice(0, 10);
+    }
+
+    function cleanJsonText(value) {
+      return String(value || '')
+        .replace(/^\uFEFF/, '')
+        .replace(/^```(?:json)?\s*/i, '')
+        .replace(/\s*```$/i, '')
+        .trim();
+    }
+
+    function extractGeminiText(data) {
+      const text = data?.candidates?.[0]?.content?.parts
+        ?.map(part => part?.text || '')
+        .join('')
+        .trim();
+      if (!text) {
+        const reason = data?.promptFeedback?.blockReason || data?.candidates?.[0]?.finishReason;
+        throw new Error(reason ? `Gemini не вернул текст: ${reason}` : 'Gemini вернул пустой ответ');
+      }
+      return cleanJsonText(text);
+    }
+
+    async function fetchGeminiJson(apiKey, prompt, temperature) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 90000);
+      try {
+        const res = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${encodeURIComponent(apiKey)}`,
+          {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+              contents: [{parts:[{text: prompt}]}],
+              generationConfig: {
+                response_mime_type: "application/json",
+                temperature
+              }
+            }),
+            signal: controller.signal
+          }
+        );
+
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          throw new Error(data?.error?.message || `API error (${res.status})`);
+        }
+        return JSON.parse(extractGeminiText(data));
+      } catch (e) {
+        if (e?.name === 'AbortError') throw new Error('Превышено время ожидания ответа Gemini (90 секунд)');
+        if (e instanceof SyntaxError) throw new Error('Gemini вернул некорректный JSON');
+        throw e;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
+    function normalizePresentationData(parsed) {
+      const cards = Array.isArray(parsed?.cards) ? parsed.cards : [];
+      return cards.map((card, idx) => ({
+        badge: String(card?.badge || `Раздел ${String(idx + 1).padStart(2,'0')}`),
+        heading: String(card?.heading || ''),
+        description: String(card?.description || ''),
+        image_query: String(card?.image_query || 'soft aesthetic educational background'),
+        layout: card?.layout === 'two_columns' ? 'two_columns' : 'single',
+        items: Array.isArray(card?.items) ? card.items.map(item => ({
+          title: String(item?.title || ''),
+          text: String(item?.text || '')
+        })) : []
+      }));
+    }
+
+    function normalizeKSPData(data) {
+      const safe = data && typeof data === 'object' ? data : {};
+      safe.learningGoals = Array.isArray(safe.learningGoals) ? safe.learningGoals : [];
+      safe.lessonGoals = safe.lessonGoals && typeof safe.lessonGoals === 'object' ? safe.lessonGoals : {};
+      safe.stages = Array.isArray(safe.stages) ? safe.stages : [];
+      safe.tasks = Array.isArray(safe.tasks) ? safe.tasks : [];
+      safe.homework = safe.homework && typeof safe.homework === 'object' ? safe.homework : {};
+      return safe;
+    }
+
+    function syncPresentationEdits() {
+      if (!Array.isArray(presentationData)) return;
+      const title = document.getElementById('mainTitle');
+      if (title) presentationTitle = title.innerText.trim() || presentationTitle;
+
+      document.querySelectorAll('#cardsContainer [data-index]').forEach((el, idx) => {
+        const card = presentationData[idx];
+        if (!card) return;
+        const heading = el.querySelector('[data-field="heading"]');
+        const description = el.querySelector('[data-field="description"]');
+        if (heading) card.heading = heading.innerText.trim();
+        if (description) card.description = description.innerText.trim();
+
+        el.querySelectorAll('[data-field="item-title"]').forEach(node => {
+          const i = Number(node.dataset.item);
+          if (card.items?.[i]) card.items[i].title = node.innerText.trim();
+        });
+        el.querySelectorAll('[data-field="item-text"]').forEach(node => {
+          const i = Number(node.dataset.item);
+          if (card.items?.[i]) card.items[i].text = node.innerText.trim();
+        });
+      });
+    }
+
+    // ===================== GENERATE =====================
+    async function generate() {
+      const apiKey = document.getElementById('apiKey').value.trim();
+      if (!apiKey) return alert('Укажите Gemini API Key');
+      localStorage.setItem('gemini_api_key', apiKey);
+
+      if (currentMode === 'presentation') {
+        await generatePresentation(apiKey);
+      } else {
+        await generateKSP(apiKey);
+      }
+    }
+
+    // ---------- PRESENTATION ----------
+    async function generatePresentation(apiKey) {
+      const prompt = document.getElementById('promptInput').value.trim();
+      if (!prompt) return alert('Введите тему');
+      const pages = document.getElementById('pageCount').value;
+      const langKey = document.getElementById('langSelect').value;
+      const presetKey = document.getElementById('stylePreset').value;
+      const detail = document.getElementById('detailLevel').value;
+      const btn = document.getElementById('genBtn');
+      const container = document.getElementById('cardsContainer');
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Формирование...';
+      container.innerHTML = '<div class="text-center py-20 animate-pulse font-serif-title text-stone-500"><p class="text-xl">Создаю презентацию...</p></div>';
+
+      const PRESET = {
+        school: "Образовательный материал с чёткой структурой и примерами.",
+        business: "Аналитический корпоративный отчёт с акцентом на показатели и решения.",
+        lecture: "Академический лекционный материал с терминологией.",
+        creative: "Концептуальный аналитический обзор."
+      };
+      const LANG = {
+        Russian: "Язык: Русский.",
+        Kazakh: "Язык: Қазақ тілі.",
+        English: "Language: English.",
+        UzbekCyrillic: "Язык: Ўзбек тили (кирилл)."
+      };
+
+      const system = `Ты профессиональный редактор. Тема: "${prompt}".
+${PRESET[presetKey]} ${LANG[langKey]}
+Количество разделов: ${pages}. Детализация: ${detail}.
+Без эмодзи. Верни ТОЛЬКО JSON:
+{
+  "title": "...",
+  "cards": [
+    {
+      "badge": "Раздел 01",
+      "heading": "...",
+      "description": "...",
+      "image_query": "english keywords for aesthetic image",
+      "layout": "two_columns",
+      "items": [{"title":"...","text":"..."},{"title":"...","text":"..."}]
+    }
+  ]
+}`;
+
+      try {
+        const parsed = await fetchGeminiJson(apiKey, system, 0.7);
+        presentationTitle = String(parsed.title || 'Документ');
+        presentationData = normalizePresentationData(parsed);
+        if (!presentationData.length) throw new Error('Gemini не создал ни одного раздела');
+        renderPresentation();
+        document.getElementById('exportBar').classList.remove('hidden');
+        document.getElementById('exportBtnText').textContent = 'Скачать PPTX';
+        document.getElementById('exportStatus').textContent = 'Презентация готова';
+      } catch(e) {
+        console.error(e);
+        alert('Ошибка: ' + e.message);
+        container.innerHTML = '<div class="text-center py-16 text-stone-500">Не удалось создать презентацию</div>';
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span>Сформировать</span>';
+      }
+    }
+
+    // ---------- KSP ----------
+    async function generateKSP(apiKey) {
+      const topic = document.getElementById('promptInput').value.trim();
+      if (!topic) return alert('Введите тему урока');
+
+      const teacher = document.getElementById('kspTeacher').value.trim() || 'Педагог';
+      const subject = document.getElementById('kspSubject').value.trim() || 'Предмет';
+      const klass = document.getElementById('kspClass').value.trim() || 'Класс';
+      const date = document.getElementById('kspDate').value || new Date().toLocaleDateString('ru');
+      const school = document.getElementById('kspSchool').value.trim() || 'Школа';
+      const type = document.getElementById('kspType').value;
+      const learningGoals = document.getElementById('kspLearningGoals').value.trim();
+      const lessonGoals = document.getElementById('kspLessonGoals').value.trim();
+      const inclusive = document.getElementById('kspInclusive').checked;
+      const langKey = document.getElementById('langSelect').value;
+      const detail = document.getElementById('detailLevel').value;
+
+      const btn = document.getElementById('genBtn');
+      const container = document.getElementById('cardsContainer');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Формирую КСП...';
+      container.innerHTML = '<div class="text-center py-20 animate-pulse font-serif-title text-stone-500"><p class="text-xl">Создаю краткосрочный план по Приказу №130...</p></div>';
+
+      const typeText = {
+        new: 'изучение нового материала',
+        combined: 'комбинированный урок',
+        practice: 'практическая работа',
+        control: 'урок контроля и закрепления'
+      }[type];
+
+      const LANG = {
+        Russian: "Весь текст на русском языке.",
+        Kazakh: "Весь текст на казахском языке (қазақ тілі).",
+        English: "All text in English.",
+        UzbekCyrillic: "Весь текст на узбекском языке кириллицей."
+      };
+
+      const system = `Ты опытный методист системы образования Республики Казахстан. Составь Краткосрочный (поурочный) план урока СТРОГО согласно Приказу №130 МОН РК.
+
+Данные:
+- Школа: ${school}
+- Педагог: ${teacher}
+- Предмет: ${subject}
+- Класс: ${klass}
+- Дата: ${date}
+- Тема: ${topic}
+- Тип урока: ${typeText}
+- Цели обучения (если даны): ${learningGoals || 'подбери актуальный код из типовой программы РК по предмету и классу'}
+- Цели урока (если даны): ${lessonGoals || 'создай дифференцированные'}
+- Инклюзия: ${inclusive ? 'ДА — обязательно добавь адаптации для ученика с особыми образовательными потребностями во все этапы, задания и домашнее задание' : 'Нет'}
+- Детализация: ${detail}
+${LANG[langKey]}
+
+ОБЯЗАТЕЛЬНО:
+1. Три этапа: Начало (0-10 мин), Середина (10-35 мин), Конец (35-45 мин).
+2. В середине — ровно 5 заданий возрастающей сложности (от лёгкого к трудному) с критериями оценивания.
+3. Блок «ИИ для решения» — как учитель и ученики могут использовать ИИ для помощи.
+4. Домашнее задание: базовое + усложнённое + (если инклюзия) адаптированное.
+5. Рефлексия (метод 3-2-1 или аналог).
+6. В каждом этапе — наглядность с image_query на английском.
+7. Без эмодзи. Академический стиль.
+
+Верни ТОЛЬКО чистый JSON:
+{
+  "school": "...",
+  "teacher": "...",
+  "subject": "...",
+  "classDate": "Класс: ... | Дата: ...",
+  "topic": "...",
+  "learningGoals": ["код и формулировка"],
+  "lessonGoals": {
+    "all": "для всех учеников",
+    "most": "для большинства",
+    "some": "для некоторых"
+  },
+  "stages": [
+    {
+      "name": "Начало урока (0-10 мин)",
+      "teacherActions": "...",
+      "visualDescription": "...",
+      "image_query": "classroom ... educational diagram clean pastel vector, no text",
+      "studentActions": "...",
+      "assessment": "...",
+      "resources": "..."
+    },
+    {
+      "name": "Середина урока (10-35 мин)",
+      "teacherActions": "...",
+      "visualDescription": "...",
+      "image_query": "...",
+      "studentActions": "...",
+      "assessment": "...",
+      "resources": "..."
+    },
+    {
+      "name": "Конец урока (35-45 мин)",
+      "teacherActions": "...",
+      "visualDescription": "...",
+      "image_query": "...",
+      "studentActions": "...",
+      "assessment": "...",
+      "resources": "..."
+    }
+  ],
+  "tasks": [
+    {"level":"Лёгкое","title":"...","description":"...","criteria":"1 балл — ..."},
+    {"level":"Среднее","title":"...","description":"...","criteria":"..."},
+    {"level":"Средне-сложное","title":"...","description":"...","criteria":"..."},
+    {"level":"Сложное","title":"...","description":"...","criteria":"..."},
+    {"level":"Повышенной сложности","title":"...","description":"...","criteria":"..."}
+  ],
+  "aiSolutions": "Как использовать ИИ для решения заданий и помощи ученикам...",
+  "homework": {
+    "basic": "...",
+    "advanced": "...",
+    "inclusive": "${inclusive ? 'адаптированное задание' : ''}"
+  },
+  "reflection": "Метод рефлексии и описание",
+  "inclusiveNote": "${inclusive ? 'Краткое описание адаптаций' : ''}"
+}`;
+
+      try {
+        kspData = normalizeKSPData(await fetchGeminiJson(apiKey, system, 0.65));
+        if (!kspData.stages.length) throw new Error('Gemini не создал этапы урока');
+        renderKSP();
+        document.getElementById('exportBar').classList.remove('hidden');
+        document.getElementById('exportBtnText').textContent = 'Скачать DOC';
+        document.getElementById('exportStatus').textContent = 'КСП готов к редактированию и печати';
+      } catch(e) {
+        console.error(e);
+        alert('Ошибка генерации КСП: ' + e.message);
+        container.innerHTML = '<div class="text-center py-16 text-stone-500">Не удалось создать КСП</div>';
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span>Сформировать</span>';
+      }
+    }
+
+    // ===================== RENDER =====================
+    function renderPresentation() {
+      const container = document.getElementById('cardsContainer');
+      container.innerHTML = '';
+      const titleEl = document.createElement('div');
+      titleEl.className = 'text-center mb-6';
+      titleEl.innerHTML = `<h2 class="font-serif-title text-3xl gamma-title" contenteditable="true" id="mainTitle">${escapeHtml(presentationTitle)}</h2>`;
+      container.appendChild(titleEl);
+
+      presentationData.forEach((card, idx) => {
+        const el = document.createElement('div');
+        el.className = 'gamma-card w-full border rounded-3xl p-8 md:p-10 shadow-xl';
+        el.dataset.index = idx;
+        const imgQ = encodeURIComponent(card.image_query || 'soft aesthetic educational background');
+        const imgUrl = `https://image.pollinations.ai/prompt/${imgQ}?width=900&height=400&nologo=true&seed=${idx+30}`;
+
+        let itemsHTML = '';
+        if (card.items && card.items.length) {
+          const two = card.layout === 'two_columns';
+          itemsHTML = `<div class="${two ? 'grid grid-cols-1 md:grid-cols-2 gap-5' : 'space-y-4'} mt-8">
+            ${card.items.map((it,i) => `
+              <div class="gamma-inner p-5 rounded-2xl border">
+                <div class="text-xs font-semibold uppercase tracking-wider gamma-accent-text mb-1" contenteditable="true" data-field="item-title" data-item="${i}">${escapeHtml(it.title)}</div>
+                <p class="text-sm font-light leading-relaxed" contenteditable="true" data-field="item-text" data-item="${i}">${escapeHtml(it.text)}</p>
+              </div>`).join('')}
+          </div>`;
+        }
+
+        el.innerHTML = `
+          <div class="flex justify-between mb-3">
+            <span class="px-3 py-1 gamma-accent-bg gamma-accent-text text-xs rounded-full border">${escapeHtml(card.badge || 'Раздел '+(idx+1))}</span>
+            <span class="text-xs text-stone-400">0${idx+1}</span>
+          </div>
+          <h2 class="text-2xl md:text-3xl font-medium font-serif-title gamma-title mb-2" contenteditable="true" data-field="heading">${escapeHtml(card.heading)}</h2>
+          ${card.description ? `<p class="text-sm font-light mb-5" contenteditable="true" data-field="description">${escapeHtml(card.description)}</p>` : ''}
+          <div class="w-full h-52 rounded-2xl overflow-hidden mb-5 border border-stone-100">
+            <img src="${imgUrl}" class="w-full h-full object-cover opacity-90" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          ${itemsHTML}`;
+        container.appendChild(el);
+      });
+    }
+
+    function renderKSP() {
+      if (!kspData) return;
+      const c = document.getElementById('cardsContainer');
+      c.innerHTML = '';
+
+      // Header card
+      const header = document.createElement('div');
+      header.className = 'gamma-card border rounded-3xl p-6 md:p-8 shadow-xl';
+      header.innerHTML = `
+        <div class="text-center font-bold text-lg uppercase tracking-wide gamma-title mb-6 font-serif-title">Краткосрочный (поурочный) план урока</div>
+        <table class="ksp-table">
+          <tr><td width="30%"><strong>Школа / Организация</strong></td><td contenteditable="true">${escapeHtml(kspData.school)}</td></tr>
+          <tr><td><strong>Ф.И.О. педагога</strong></td><td contenteditable="true">${escapeHtml(kspData.teacher)}</td></tr>
+          <tr><td><strong>Предмет</strong></td><td contenteditable="true">${escapeHtml(kspData.subject)}</td></tr>
+          <tr><td><strong>Класс / Дата</strong></td><td contenteditable="true">${escapeHtml(kspData.classDate)}</td></tr>
+          <tr><td><strong>Тема урока</strong></td><td contenteditable="true"><strong>${escapeHtml(kspData.topic)}</strong></td></tr>
+          <tr><td><strong>Цели обучения</strong></td><td contenteditable="true"><ul class="list-disc pl-4">${(kspData.learningGoals||[]).map(g=>`<li>${escapeHtml(g)}</li>`).join('')}</ul></td></tr>
+          <tr><td><strong>Цели урока</strong></td><td contenteditable="true">
+            <div><strong>Для всех:</strong> ${escapeHtml(kspData.lessonGoals?.all)}</div>
+            <div class="mt-1"><strong>Для большинства:</strong> ${escapeHtml(kspData.lessonGoals?.most)}</div>
+            <div class="mt-1"><strong>Для некоторых:</strong> ${escapeHtml(kspData.lessonGoals?.some)}</div>
+          </td></tr>
+        </table>`;
+      c.appendChild(header);
+
+      // Stages
+      const stagesTitle = document.createElement('div');
+      stagesTitle.className = 'text-center font-semibold text-base gamma-title mt-4';
+      stagesTitle.textContent = 'Ход урока (согласно Приказу №130 МОН РК)';
+      c.appendChild(stagesTitle);
+
+      (kspData.stages||[]).forEach((st, idx) => {
+        const card = document.createElement('div');
+        card.className = 'gamma-card border rounded-3xl p-6 shadow-xl';
+        const imgQ = encodeURIComponent(st.image_query || 'classroom educational scene clean pastel vector, no text');
+        const imgUrl = `https://image.pollinations.ai/prompt/${imgQ}?width=800&height=400&nologo=true&seed=${idx+50}`;
+        card.innerHTML = `
+          <h3 class="font-semibold text-base gamma-title mb-4">${escapeHtml(st.name)}</h3>
+          <table class="ksp-table mb-4">
+            <thead><tr>
+              <th width="35%">Действия педагога + Наглядность</th>
+              <th width="25%">Действия ученика</th>
+              <th width="20%">Оценивание</th>
+              <th width="20%">Ресурсы</th>
+            </tr></thead>
+            <tbody><tr>
+              <td contenteditable="true">
+                ${escapeHtml(st.teacherActions)}
+                <div class="mt-3 p-3 rounded-xl border border-dashed text-xs bg-stone-50">
+                  <strong>Наглядность:</strong> ${escapeHtml(st.visualDescription)}<br>
+                  <img src="${imgUrl}" class="mt-2 rounded-lg max-h-40 w-full object-cover" loading="lazy" onerror="this.style.display='none'">
+                </div>
+              </td>
+              <td contenteditable="true">${escapeHtml(st.studentActions)}</td>
+              <td contenteditable="true">${escapeHtml(st.assessment)}</td>
+              <td contenteditable="true">${escapeHtml(st.resources)}</td>
+            </tr></tbody>
+          </table>`;
+        c.appendChild(card);
+      });
+
+      // 5 Tasks
+      if (kspData.tasks && kspData.tasks.length) {
+        const tasksCard = document.createElement('div');
+        tasksCard.className = 'gamma-card border rounded-3xl p-6 shadow-xl';
+        tasksCard.innerHTML = `
+          <h3 class="font-semibold text-base gamma-title mb-4">Задания разной сложности (от лёгкого к трудному)</h3>
+          <div class="space-y-4">
+            ${kspData.tasks.map((t,i) => `
+              <div class="gamma-inner p-4 rounded-2xl border">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-xs font-bold px-2 py-0.5 rounded-full gamma-accent-bg gamma-accent-text">${escapeHtml(t.level || ('Задание '+(i+1)))}</span>
+                  <span class="font-medium text-sm" contenteditable="true">${escapeHtml(t.title)}</span>
+                </div>
+                <p class="text-sm font-light mb-2" contenteditable="true">${escapeHtml(t.description)}</p>
+                <p class="text-xs text-stone-500" contenteditable="true"><strong>Критерии:</strong> ${escapeHtml(t.criteria)}</p>
+              </div>`).join('')}
+          </div>`;
+        c.appendChild(tasksCard);
+      }
+
+      // AI Solutions
+      if (kspData.aiSolutions) {
+        const aiCard = document.createElement('div');
+        aiCard.className = 'gamma-card border rounded-3xl p-6 shadow-xl';
+        aiCard.innerHTML = `
+          <h3 class="font-semibold text-base gamma-title mb-3">ИИ для решения</h3>
+          <div class="text-sm font-light leading-relaxed" contenteditable="true">${escapeHtml(kspData.aiSolutions)}</div>`;
+        c.appendChild(aiCard);
+      }
+
+      // Homework + Reflection
+      const endCard = document.createElement('div');
+      endCard.className = 'gamma-card border rounded-3xl p-6 shadow-xl';
+      endCard.innerHTML = `
+        <h3 class="font-semibold text-base gamma-title mb-3">Домашнее задание</h3>
+        <div class="space-y-2 text-sm mb-5">
+          <div><strong>Базовое:</strong> <span contenteditable="true">${escapeHtml(kspData.homework?.basic)}</span></div>
+          <div><strong>Усложнённое:</strong> <span contenteditable="true">${escapeHtml(kspData.homework?.advanced)}</span></div>
+          ${kspData.homework?.inclusive ? `<div><strong>Для инклюзии:</strong> <span contenteditable="true">${escapeHtml(kspData.homework.inclusive)}</span></div>` : ''}
+        </div>
+        <h3 class="font-semibold text-base gamma-title mb-2">Рефлексия</h3>
+        <div class="text-sm font-light" contenteditable="true">${escapeHtml(kspData.reflection)}</div>
+        ${kspData.inclusiveNote ? `<div class="mt-4 p-3 rounded-xl gamma-accent-bg text-sm"><strong>Инклюзивные адаптации:</strong> <span contenteditable="true">${escapeHtml(kspData.inclusiveNote)}</span></div>` : ''}`;
+      c.appendChild(endCard);
+    }
+
+    // ===================== EXPORT =====================
+    function exportCurrent() {
+      if (currentMode === 'presentation') exportToPPTX();
+      else exportKSPToDoc();
+    }
+
+    function exportToPPTX() {
+      if (!presentationData.length) return;
+      syncPresentationEdits();
+      // sync title
+      const t = document.getElementById('mainTitle');
+      if (t) presentationTitle = t.innerText.trim();
+
+      const themeKey = document.getElementById('themeSelect').value;
+      const colors = THEME_COLORS[themeKey] || THEME_COLORS['theme-sakura'];
+      const pptx = new PptxGenJS();
+      pptx.layout = 'LAYOUT_16x9';
+      pptx.title = presentationTitle;
+
+      // title slide
+      let s = pptx.addSlide();
+      s.background = {color: colors.bg};
+      s.addText(presentationTitle, {x:0.8,y:2.5,w:8.4,h:1.2,fontSize:28,fontFace:'Georgia',color:colors.title,align:'center'});
+      s.addText('Gamma Studio', {x:0.8,y:3.9,w:8.4,h:0.4,fontSize:12,color:colors.body,align:'center'});
+
+      presentationData.forEach(card => {
+        let slide = pptx.addSlide();
+        slide.background = {color: colors.bg};
+        slide.addText(card.heading || '', {x:0.6,y:0.5,w:8.8,h:0.7,fontSize:22,fontFace:'Georgia',color:colors.title});
+        if (card.description) slide.addText(card.description, {x:0.6,y:1.3,w:8.8,h:0.6,fontSize:12,color:colors.body});
+        if (card.items) {
+          card.items.forEach((it,i) => {
+            slide.addText(`${it.title}: ${it.text}`, {x:0.6,y:2.1+i*0.85,w:8.8,h:0.75,fontSize:12,color:colors.body,fill:{color:colors.card}});
+          });
+        }
+      });
+      pptx.writeFile({fileName: ((presentationTitle || 'Gamma').slice(0,40).replace(/[\\/:*?"<>|]/g,'_') || 'Gamma') + '.pptx'});
+    }
+
+    function exportKSPToDoc() {
+      // Берём текущий HTML из контейнера и делаем документ
+      const content = document.getElementById('cardsContainer').innerHTML;
+      const html = `<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word">
+<head><meta charset="utf-8">
+<style>
+body{font-family:'Times New Roman',serif;font-size:11pt}
+table{border-collapse:collapse;width:100%;margin-bottom:12px}
+td,th{border:1px solid #000;padding:6px;vertical-align:top}
+h2,h3{margin:12px 0 6px}
+img{max-width:100%;height:auto}
+</style></head>
+<body>${content.replace(/contenteditable="true"/g,'')}</body></html>`;
+
+      const blob = new Blob(['\ufeff', html], {type: 'application/msword'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = (kspData?.topic || 'KSP').slice(0,50).replace(/[\\/:*?"<>|]/g,'_').trim() + '.doc';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
