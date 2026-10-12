@@ -370,7 +370,7 @@
       const timer = setTimeout(() => controller.abort(), 90000);
       try {
         const res = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`,
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${encodeURIComponent(apiKey)}`,
           {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
@@ -445,7 +445,7 @@
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), 45000);
         try {
-          const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${encodeURIComponent(apiKey)}`, {
+          const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-nano-banana-2.1:generateContent?key=${encodeURIComponent(apiKey)}`, {
             method:'POST', headers:{'Content-Type':'application/json'}, signal:controller.signal,
             body:JSON.stringify({contents:[{parts:[{text:`Create a clean educational visual for a school presentation. ${prompt}. No readable text, no logos, no watermark.`}]}], generationConfig:{responseModalities:['IMAGE']}})
           });
