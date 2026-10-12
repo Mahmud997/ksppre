@@ -230,11 +230,59 @@
       "theme-ivory":    { bg:"FBF9F5", title:"2C2825", body:"615B56", accent:"9E8167", card:"FFFFFF", inner:"F4EFE6" }
     };
 
+    // ===================== FULL UI LOCALIZATION =====================
+    const UI_TRANSLATIONS = {"Gamma Studio — Презентации + КСП (Приказ №130 МОН РК)":["Gamma Studio — Презентациялар + ҚМЖ (№130 бұйрық)","Gamma Studio — Presentations + Lesson Plan (Order No. 130)","Gamma Studio — Презентациялар + ҚМЖ (130-сонли буйруқ)"],"Презентации + КСП (Приказ №130 МОН РК)":["Презентациялар + ҚМЖ (№130 бұйрық)","Presentations + Lesson Plan (Order No. 130)","Презентациялар + ҚМЖ (130-сонли буйруқ)"],"Презентация":["Презентация","Presentation","Презентация"],"КСП (Приказ №130)":["ҚМЖ (№130 бұйрық)","Lesson Plan (Order No. 130)","ҚМЖ (130-сонли буйруқ)"],"Тема / Ключевые положения":["Тақырып / Негізгі ережелер","Topic / Key points","Мавзу / Асосий қоидалар"],"Тема урока или тема презентации...":["Сабақ немесе презентация тақырыбы...","Lesson or presentation topic...","Дарс ёки тақдимот мавзуси..."],"Ф.И.О. педагога":["Педагогтің аты-жөні","Teacher full name","Педагогнинг Ф.И.Ш."],"Предмет":["Пән","Subject","Фан"],"Класс":["Сынып","Class","Синф"],"Дата":["Күні","Date","Сана"],"Школа / Организация":["Мектеп / Ұйым","School / Organization","Мактаб / Ташкилот"],"Тип урока":["Сабақ түрі","Lesson type","Дарс тури"],"Изучение нового материала":["Жаңа материалды меңгеру","Learning new material","Янги материални ўрганиш"],"Комбинированный":["Аралас сабақ","Combined lesson","Аралаш дарс"],"Практическая работа":["Практикалық жұмыс","Practical work","Амалий иш"],"Контроль / закрепление":["Бақылау / бекіту","Assessment / practice","Назорат / мустаҳкамлаш"],"Цели обучения (можно оставить пустым — ИИ подберёт код)":["Оқу мақсаттары (бос қалдыруға болады — ЖИ кодты таңдайды)","Learning objectives (leave blank for AI to suggest a code)","Ўқув мақсадлари (бўш қолдириш мумкин — СИ кодни танлайди)"],"Цели урока (можно оставить пустым)":["Сабақ мақсаттары (бос қалдыруға болады)","Lesson objectives (optional)","Дарс мақсадлари (ихтиёрий)"],"Например: 6.3.4.2 ...":["Мысалы: 6.3.4.2 ...","For example: 6.3.4.2 ...","Масалан: 6.3.4.2 ..."],"ИИ сделает дифференцированные цели":["ЖИ сараланған мақсаттарды құрады","AI will create differentiated objectives","СИ даражаланган мақсадларни тузади"],"Учесть инклюзивного ученика (адаптации + отдельные задания)":["Инклюзивті оқушыны ескеру (бейімдеу және жеке тапсырмалар)","Include adaptations and separate tasks for an inclusive learner","Инклюзив ўқувчини ҳисобга олиш (мослаштириш ва алоҳида топшириқлар)"],"Сохранить шаблон учителя":["Мұғалім үлгісін сақтау","Save teacher template","Ўқитувчи шаблонини сақлаш"],"Загрузить шаблон":["Үлгіні жүктеу","Load template","Шаблонни юклаш"],"Формат / Стиль":["Пішім / Стиль","Format / Style","Формат / Услуб"],"Образовательный":["Білім беру","Educational","Таълимий"],"Корпоративный":["Корпоративтік","Corporate","Корпоратив"],"Академический":["Академиялық","Academic","Академик"],"Аналитический":["Талдамалық","Analytical","Таҳлилий"],"Язык":["Тіл","Language","Тил"],"Русский":["Орысша","Russian","Русча"],"Глубина":["Толықтық деңгейі","Detail level","Батафсиллик"],"Лаконичный":["Қысқа","Brief","Қисқа"],"Стандартный":["Стандартты","Standard","Стандарт"],"Развёрнутый":["Толық","Detailed","Батафсил"],"Разделов (презентация)":["Бөлімдер саны (презентация)","Number of sections","Бўлимлар сони (тақдимот)"],"Палитра:":["Түстер палитрасы:","Palette:","Ранглар палитраси:"],"Сакура":["Сакура","Sakura","Сакура"],"Пион":["Пион","Peony","Пион"],"Лаванда":["Лаванда","Lavender","Лаванда"],"Шалфей":["Шалфей","Sage","Шалфей"],"Слоновая кость":["Піл сүйегі","Ivory","Фил суяги"],"Сформировать":["Құрастыру","Generate","Шакллантириш"],"Документ готов":["Құжат дайын","Document ready","Ҳужжат тайёр"],"PDF / Печать":["PDF / Басып шығару","PDF / Print","PDF / Чоп этиш"],"Скачать":["Жүктеп алу","Download","Юклаб олиш"],"Готов к работе":["Жұмысқа дайын","Ready to use","Ишга тайёр"],"Выберите режим, заполните поля и нажмите «Сформировать»":["Режимді таңдап, өрістерді толтырып, «Құрастыру» түймесін басыңыз","Choose a mode, fill in the fields, and click “Generate”","Режимни танланг, майдонларни тўлдиринг ва «Шакллантириш»ни босинг"],"Режим: КСП (Приказ №130)":["Режим: ҚМЖ (№130 бұйрық)","Mode: Lesson Plan (Order No. 130)","Режим: ҚМЖ (130-сонли буйруқ)"],"Заполните поля и нажмите «Сформировать»":["Өрістерді толтырып, «Құрастыру» түймесін басыңыз","Fill in the fields and click “Generate”","Майдонларни тўлдириб, «Шакллантириш»ни босинг"],"Шаблон учителя сохранён":["Мұғалім үлгісі сақталды","Teacher template saved","Ўқитувчи шаблони сақланди"],"Шаблон не найден":["Үлгі табылмады","Template not found","Шаблон топилмади"],"Шаблон загружен":["Үлгі жүктелді","Template loaded","Шаблон юкланди"],"Краткосрочный (поурочный) план урока":["Қысқа мерзімді сабақ жоспары","Short-term lesson plan","Қисқа муддатли дарс режаси"],"Ход урока (согласно Приказу №130 МОН РК)":["Сабақ барысы (ҚР Оқу-ағарту министрлігінің №130 бұйрығына сәйкес)","Lesson procedure (in accordance with Order No. 130)","Дарс жараёни (130-сонли буйруққа мувофиқ)"],"Класс / Дата":["Сынып / Күні","Class / Date","Синф / Сана"],"Тема урока":["Сабақ тақырыбы","Lesson topic","Дарс мавзуси"],"Цели обучения":["Оқу мақсаттары","Learning objectives","Ўқув мақсадлари"],"Цели урока":["Сабақ мақсаттары","Lesson objectives","Дарс мақсадлари"],"Для всех:":["Барлығы үшін:","For all:","Барча учун:"],"Для большинства:":["Көпшілігі үшін:","For most:","Кўпчилик учун:"],"Для некоторых:":["Кейбіреулер үшін:","For some:","Айримлар учун:"],"Действия педагога + Наглядность":["Педагог әрекеті + Көрнекілік","Teacher actions + Visuals","Педагог ҳаракатлари + Кўргазмалилик"],"Действия ученика":["Оқушы әрекеті","Student actions","Ўқувчи ҳаракатлари"],"Оценивание":["Бағалау","Assessment","Баҳолаш"],"Ресурсы":["Ресурстар","Resources","Ресурслар"],"Наглядность:":["Көрнекілік:","Visuals:","Кўргазмалилик:"],"Задания разной сложности (от лёгкого к трудному)":["Әртүрлі күрделіліктегі тапсырмалар (жеңілден күрделіге)","Tasks of varying difficulty (easy to hard)","Турли мураккабликдаги топшириқлар (осондан қийинга)"],"Критерии:":["Бағалау критерийлері:","Criteria:","Мезонлар:"],"ИИ для решения":["Тапсырмаларды орындауға арналған ЖИ","Using AI to solve tasks","Топшириқларни бажариш учун СИ"],"Домашнее задание":["Үй тапсырмасы","Homework","Уй вазифаси"],"Базовое:":["Негізгі:","Basic:","Асосий:"],"Усложнённое:":["Күрделендірілген:","Advanced:","Мураккаблаштирилган:"],"Для инклюзии:":["Инклюзия үшін:","Inclusive adaptation:","Инклюзия учун:"],"Рефлексия":["Рефлексия","Reflection","Рефлексия"],"Инклюзивные адаптации:":["Инклюзивті бейімдеу:","Inclusive adaptations:","Инклюзив мослаштиришлар:"],"Ожидаемый результат:":["Күтілетін нәтиже:","Expected outcome:","Кутилаётган натижа:"],"Подсказка:":["Кеңес:","Hint:","Маслаҳат:"],"Практика: 5 заданий":["Практика: 5 тапсырма","Practice: 5 tasks","Амалиёт: 5 та топшириқ"],"Формирование...":["Құрастырылуда...","Generating...","Шакллантирилмоқда..."],"Создаю презентацию...":["Презентация жасалуда...","Creating presentation...","Тақдимот яратилмоқда..."],"Создаю краткосрочный план по Приказу №130...":["№130 бұйрыққа сәйкес қысқа мерзімді жоспар жасалуда...","Creating lesson plan according to Order No. 130...","130-сонли буйруқ асосида қисқа муддатли режа яратилмоқда..."],"Не удалось создать презентацию":["Презентацияны жасау мүмкін болмады","Could not create presentation","Тақдимотни яратиб бўлмади"],"Не удалось создать КСП":["ҚМЖ жасау мүмкін болмады","Could not create lesson plan","ҚМЖни яратиб бўлмади"],"Презентация готова":["Презентация дайын","Presentation ready","Тақдимот тайёр"],"КСП готов к редактированию и печати":["ҚМЖ өңдеуге және басып шығаруға дайын","Lesson plan ready to edit and print","ҚМЖ таҳрирлаш ва чоп этишга тайёр"],"Скачать PPTX":["PPTX жүктеп алу","Download PPTX","PPTX юклаб олиш"],"Скачать DOC":["DOC жүктеп алу","Download DOC","DOC юклаб олиш"],"Укажите Gemini API Key":["Gemini API кілтін енгізіңіз","Enter your Gemini API key","Gemini API калитини киритинг"],"Введите тему":["Тақырыпты енгізіңіз","Enter a topic","Мавзуни киритинг"],"Введите тему урока":["Сабақ тақырыбын енгізіңіз","Enter the lesson topic","Дарс мавзусини киритинг"],"Ошибка генерации КСП: ":["ҚМЖ жасау қатесі: ","Lesson plan generation error: ","ҚМЖ яратиш хатоси: "],"Ошибка: ":["Қате: ","Error: ","Хато: "],"Gemini вернул некорректный JSON":["Gemini қате JSON қайтарды","Gemini returned invalid JSON","Gemini нотўғри JSON қайтарди"],"Gemini вернул пустой ответ":["Gemini бос жауап қайтарды","Gemini returned an empty response","Gemini бўш жавоб қайтарди"],"Gemini не создал ни одного раздела":["Gemini бірде-бір бөлім жасамады","Gemini did not create any sections","Gemini бирорта бўлим яратмади"],"Gemini не создал этапы урока":["Gemini сабақ кезеңдерін жасамады","Gemini did not create lesson stages","Gemini дарс босқичларини яратмади"],"Gemini не вернул текст":["Gemini мәтін қайтармады","Gemini returned no text","Gemini матн қайтармади"],"Превышено время ожидания ответа Gemini (90 секунд)":["Gemini жауабын күту уақыты аяқталды (90 секунд)","Timed out waiting for Gemini (90 seconds)","Gemini жавобини кутиш вақти тугади (90 сония)"],"Документ":["Құжат","Document","Ҳужжат"]};
+    const LANGUAGE_INDEX = { Russian: -1, Kazakh: 0, English: 1, UzbekCyrillic: 2 };
+    const LANGUAGE_HTML = { Russian: 'ru', Kazakh: 'kk', English: 'en', UzbekCyrillic: 'uz-Cyrl' };
+    function getLanguageKey() { return document.getElementById('langSelect')?.value || 'Russian'; }
+    function translateStaticText(value) {
+      const original = String(value ?? '');
+      const trimmed = original.trim();
+      for (const [source, variants] of Object.entries(UI_TRANSLATIONS)) {
+        if (trimmed === source || variants.includes(trimmed)) {
+          const idx = LANGUAGE_INDEX[getLanguageKey()];
+          const translated = idx < 0 ? source : variants[idx];
+          return original.replace(trimmed, translated);
+        }
+      }
+      return original;
+    }
+    function applyLanguage(root = document) {
+      const lang = getLanguageKey();
+      document.documentElement.lang = LANGUAGE_HTML[lang] || 'ru';
+      if (root === document) {
+        document.title = translateStaticText('Gamma Studio — Презентации + КСП (Приказ №130 МОН РК)');
+      }
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          const parent = node.parentElement;
+          if (!parent || ['SCRIPT','STYLE','TEXTAREA'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+          if (parent.closest('#apiKey')) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+      const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(node => { node.nodeValue = translateStaticText(node.nodeValue); });
+      root.querySelectorAll?.('[placeholder]').forEach(el => { el.placeholder = translateStaticText(el.placeholder); });
+      root.querySelectorAll?.('[title]').forEach(el => { el.title = translateStaticText(el.title); });
+    }
+    function uiText(key) {
+      const idx = LANGUAGE_INDEX[getLanguageKey()];
+      const entry = UI_TRANSLATIONS[key];
+      return entry ? (idx < 0 ? key : entry[idx]) : key;
+    }
+
     // ===================== INIT =====================
     document.addEventListener('DOMContentLoaded', () => {
       const key = localStorage.getItem('gemini_api_key');
       if (key) document.getElementById('apiKey').value = key;
       loadTeacherProfile(true);
+      const savedLanguage = localStorage.getItem('gamma_language');
+      if (savedLanguage && document.querySelector(`#langSelect option[value=\"${savedLanguage}\"]`)) document.getElementById('langSelect').value = savedLanguage;
+      document.getElementById('langSelect').addEventListener('change', () => { localStorage.setItem('gamma_language', getLanguageKey()); applyLanguage(); });
+      applyLanguage();
+      applyLanguage(document.getElementById('cardsContainer'));
       // set today
       const today = getLocalDateISO();
       document.getElementById('kspDate').value = today;
@@ -249,9 +297,10 @@
       document.getElementById('exportBar').classList.add('hidden');
       document.getElementById('cardsContainer').innerHTML = `
         <div class="text-center py-20 text-stone-400 no-print">
-          <p class="font-serif-title text-2xl mb-2 text-stone-500">Режим: ${mode === 'ksp' ? 'КСП (Приказ №130)' : 'Презентация'}</p>
-          <p class="text-xs">Заполните поля и нажмите «Сформировать»</p>
+          <p class="font-serif-title text-2xl mb-2 text-stone-500">${uiText('Режим: КСП (Приказ №130)') .replace(uiText('КСП (Приказ №130)'), mode === 'ksp' ? uiText('КСП (Приказ №130)') : uiText('Презентация'))}</p>
+          <p class="text-xs">${uiText('Заполните поля и нажмите «Сформировать»')}</p>
         </div>`;
+      applyLanguage(document.getElementById('cardsContainer'));
     }
 
     function changeTheme(t) {
@@ -266,17 +315,17 @@
         school: document.getElementById('kspSchool').value
       };
       localStorage.setItem('gamma_teacher_profile', JSON.stringify(profile));
-      alert('Шаблон учителя сохранён');
+      alert(uiText('Шаблон учителя сохранён'));
     }
     function loadTeacherProfile(silent = false) {
       const raw = localStorage.getItem('gamma_teacher_profile');
-      if (!raw) { if (!silent) alert('Шаблон не найден'); return; }
+      if (!raw) { if (!silent) alert(uiText('Шаблон не найден')); return; }
       try {
         const p = JSON.parse(raw);
         document.getElementById('kspTeacher').value = p.teacher || '';
         document.getElementById('kspSubject').value = p.subject || '';
         document.getElementById('kspSchool').value = p.school || '';
-        if (!silent) alert('Шаблон загружен');
+        if (!silent) alert(uiText('Шаблон загружен'));
       } catch(e) {}
     }
 
@@ -311,7 +360,7 @@
         .trim();
       if (!text) {
         const reason = data?.promptFeedback?.blockReason || data?.candidates?.[0]?.finishReason;
-        throw new Error(reason ? `Gemini не вернул текст: ${reason}` : 'Gemini вернул пустой ответ');
+        throw new Error(reason ? `${uiText('Gemini не вернул текст')}: ${reason}` : uiText('Gemini вернул пустой ответ'));
       }
       return cleanJsonText(text);
     }
@@ -321,14 +370,14 @@
       const timer = setTimeout(() => controller.abort(), 90000);
       try {
         const res = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${encodeURIComponent(apiKey)}`,
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`,
           {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({
               contents: [{parts:[{text: prompt}]}],
               generationConfig: {
-                response_mime_type: "application/json",
+                responseMimeType: "application/json",
                 temperature
               }
             }),
@@ -342,8 +391,8 @@
         }
         return JSON.parse(extractGeminiText(data));
       } catch (e) {
-        if (e?.name === 'AbortError') throw new Error('Превышено время ожидания ответа Gemini (90 секунд)');
-        if (e instanceof SyntaxError) throw new Error('Gemini вернул некорректный JSON');
+        if (e?.name === 'AbortError') throw new Error(uiText('Превышено время ожидания ответа Gemini (90 секунд)'));
+        if (e instanceof SyntaxError) throw new Error(uiText('Gemini вернул некорректный JSON'));
         throw e;
       } finally {
         clearTimeout(timer);
@@ -496,7 +545,7 @@
     // ===================== GENERATE =====================
     async function generate() {
       const apiKey = document.getElementById('apiKey').value.trim();
-      if (!apiKey) return alert('Укажите Gemini API Key');
+      if (!apiKey) return alert(uiText('Укажите Gemini API Key'));
       localStorage.setItem('gemini_api_key', apiKey);
 
       if (currentMode === 'presentation') {
@@ -509,7 +558,7 @@
     // ---------- PRESENTATION ----------
     async function generatePresentation(apiKey) {
       const prompt = document.getElementById('promptInput').value.trim();
-      if (!prompt) return alert('Введите тему');
+      if (!prompt) return alert(uiText('Введите тему'));
       const pages = document.getElementById('pageCount').value;
       const langKey = document.getElementById('langSelect').value;
       const presetKey = document.getElementById('stylePreset').value;
@@ -518,8 +567,8 @@
       const container = document.getElementById('cardsContainer');
 
       btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Формирование...';
-      container.innerHTML = '<div class="text-center py-20 animate-pulse font-serif-title text-stone-500"><p class="text-xl">Создаю презентацию...</p></div>';
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> ' + uiText('Формирование...');
+      container.innerHTML = '<div class="text-center py-20 animate-pulse font-serif-title text-stone-500"><p class="text-xl">' + uiText('Создаю презентацию...') + '</p></div>';
 
       const PRESET = {
         school: "Образовательный материал с чёткой структурой и примерами.",
@@ -528,13 +577,13 @@
         creative: "Концептуальный аналитический обзор."
       };
       const LANG = {
-        Russian: "Язык: Русский.",
-        Kazakh: "Язык: Қазақ тілі.",
-        English: "Language: English.",
-        UzbekCyrillic: "Язык: Ўзбек тили (кирилл)."
+        Russian: "OUTPUT LANGUAGE: Russian. All visible output text must be Russian.",
+        Kazakh: "ШЫҒЫС ТІЛІ: ҚАЗАҚША. Барлық көрінетін мәтін тек қазақ тілінде болсын.",
+        English: "OUTPUT LANGUAGE: ENGLISH. All visible output text must be English.",
+        UzbekCyrillic: "ЧИҚИШ ТИЛИ: ЎЗБЕКЧА (КИРИЛЛ). Барча кўринадиган матн фақат ўзбек тилида бўлсин."
       };
 
-      const system = `Ты профессиональный редактор. Тема: "${prompt}".
+      const system = `Ты профессиональный редактор и переводчик. Тема: "${prompt}". ЯЗЫКОВОЕ ПРАВИЛО: абсолютно весь видимый пользователю текст результата — заголовок, названия разделов, описания, элементы, задания, критерии, ответы и подсказки — должен быть ТОЛЬКО на выбранном языке. Не смешивай языки. Не переводи только техническое поле image_query и visualType/layout.
 ${PRESET[presetKey]} ${LANG[langKey]}
 Количество разделов: ${pages}. Детализация: ${detail}.
 Для КАЖДОГО раздела обязательно создай наглядность: короткое описание визуала, английский image_query для поиска/генерации изображения и тип визуала. Не вставляй URL сам.
@@ -569,30 +618,32 @@ ${PRESET[presetKey]} ${LANG[langKey]}
         presentationData = normalizePresentationData(parsed);
         presentationTasks = normalizePresentationTasks(parsed);
         await preparePresentationVisuals(apiKey);
-        if (!presentationData.length) throw new Error('Gemini не создал ни одного раздела');
+        if (!presentationData.length) throw new Error(uiText('Gemini не создал ни одного раздела'));
         renderPresentation();
         document.getElementById('exportBar').classList.remove('hidden');
-        document.getElementById('exportBtnText').textContent = 'Скачать PPTX';
-        document.getElementById('exportStatus').textContent = 'Презентация готова';
+        document.getElementById('exportBtnText').textContent = uiText('Скачать PPTX');
+        document.getElementById('exportStatus').textContent = uiText('Презентация готова');
+        applyLanguage(container);
       } catch(e) {
         console.error(e);
-        alert('Ошибка: ' + e.message);
-        container.innerHTML = '<div class="text-center py-16 text-stone-500">Не удалось создать презентацию</div>';
+        alert(uiText('Ошибка: ') + e.message);
+        container.innerHTML = '<div class="text-center py-16 text-stone-500">' + uiText('Не удалось создать презентацию') + '</div>';
       } finally {
         btn.disabled = false;
-        btn.innerHTML = '<span>Сформировать</span>';
+        btn.innerHTML = '<span>' + uiText('Сформировать') + '</span>';
+        applyLanguage();
       }
     }
 
     // ---------- KSP ----------
     async function generateKSP(apiKey) {
       const topic = document.getElementById('promptInput').value.trim();
-      if (!topic) return alert('Введите тему урока');
+      if (!topic) return alert(uiText('Введите тему урока'));
 
       const teacher = document.getElementById('kspTeacher').value.trim() || 'Педагог';
       const subject = document.getElementById('kspSubject').value.trim() || 'Предмет';
       const klass = document.getElementById('kspClass').value.trim() || 'Класс';
-      const date = document.getElementById('kspDate').value || new Date().toLocaleDateString('ru');
+      const date = document.getElementById('kspDate').value || new Date().toLocaleDateString(LANGUAGE_HTML[langKey] || 'ru');
       const school = document.getElementById('kspSchool').value.trim() || 'Школа';
       const type = document.getElementById('kspType').value;
       const learningGoals = document.getElementById('kspLearningGoals').value.trim();
@@ -605,7 +656,7 @@ ${PRESET[presetKey]} ${LANG[langKey]}
       const container = document.getElementById('cardsContainer');
       btn.disabled = true;
       btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Формирую КСП...';
-      container.innerHTML = '<div class="text-center py-20 animate-pulse font-serif-title text-stone-500"><p class="text-xl">Создаю краткосрочный план по Приказу №130...</p></div>';
+      container.innerHTML = '<div class="text-center py-20 animate-pulse font-serif-title text-stone-500"><p class="text-xl">' + uiText('Создаю краткосрочный план по Приказу №130...') + '</p></div>';
 
       const typeText = {
         new: 'изучение нового материала',
@@ -615,13 +666,13 @@ ${PRESET[presetKey]} ${LANG[langKey]}
       }[type];
 
       const LANG = {
-        Russian: "Весь текст на русском языке.",
-        Kazakh: "Весь текст на казахском языке (қазақ тілі).",
-        English: "All text in English.",
-        UzbekCyrillic: "Весь текст на узбекском языке кириллицей."
+        Russian: "ВЕСЬ ВИДИМЫЙ ТЕКСТ ТОЛЬКО НА РУССКОМ ЯЗЫКЕ.",
+        Kazakh: "БАРЛЫҚ КӨРІНЕТІН МӘТІН ТЕК ҚАЗАҚ ТІЛІНДЕ БОЛСЫН.",
+        English: "ALL VISIBLE TEXT MUST BE IN ENGLISH ONLY.",
+        UzbekCyrillic: "БАРЧА КЎРИНАДИГАН МАТН ФАҚАТ ЎЗБЕК ТИЛИДА, КИРИЛЛ ЁЗУВИДА БЎЛСИН."
       };
 
-      const system = `Ты опытный методист системы образования Республики Казахстан. Составь Краткосрочный (поурочный) план урока СТРОГО согласно Приказу №130 МОН РК.
+      const system = `Ты опытный методист системы образования Республики Казахстан. Составь краткосрочный план урока согласно Приказу №130 МОН РК. СТРОГОЕ ЯЗЫКОВОЕ ПРАВИЛО: все видимые текстовые значения JSON, включая name, goals, stages, tasks, homework, reflection, критерии, действия и ресурсы, должны быть исключительно на выбранном языке. Не оставляй русские шаблонные значения при выборе другого языка. Исключения — коды стандартов, имена собственные и технические поля image_query.
 
 Данные:
 - Школа: ${school}
@@ -707,18 +758,20 @@ ${LANG[langKey]}
 
       try {
         kspData = normalizeKSPData(await fetchGeminiJson(apiKey, system, 0.65));
-        if (!kspData.stages.length) throw new Error('Gemini не создал этапы урока');
+        if (!kspData.stages.length) throw new Error(uiText('Gemini не создал этапы урока'));
         renderKSP();
         document.getElementById('exportBar').classList.remove('hidden');
-        document.getElementById('exportBtnText').textContent = 'Скачать DOC';
-        document.getElementById('exportStatus').textContent = 'КСП готов к редактированию и печати';
+        document.getElementById('exportBtnText').textContent = uiText('Скачать DOC');
+        document.getElementById('exportStatus').textContent = uiText('КСП готов к редактированию и печати');
+        applyLanguage(container);
       } catch(e) {
         console.error(e);
-        alert('Ошибка генерации КСП: ' + e.message);
-        container.innerHTML = '<div class="text-center py-16 text-stone-500">Не удалось создать КСП</div>';
+        alert(uiText('Ошибка генерации КСП: ') + e.message);
+        container.innerHTML = '<div class="text-center py-16 text-stone-500">' + uiText('Не удалось создать КСП') + '</div>';
       } finally {
         btn.disabled = false;
-        btn.innerHTML = '<span>Сформировать</span>';
+        btn.innerHTML = '<span>' + uiText('Сформировать') + '</span>';
+        applyLanguage();
       }
     }
 
